@@ -3,40 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reciever</title>
+    <title>Receiver</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        #submit {
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        #encryptedMessage {
+            padding: 8px;
+            margin-right: 10px;
+        }
+
+        #send {
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #output2 {
+            margin-top: 10px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-<form action="Sender.html">
-	<input type="submit" id="submit" value="Be Sender!!">
-</form>
+    <form>
+        <input type="button" id="submit" value="Be Sender!!" onclick="location.href='Sender.html';">
+    </form>
 
-    
-        <h1>Reciever</h1>
-        <p id="messageBox">This is a message box.</p>
-        <button id="send" onClick='decrypt()'>Decrypt</button>
-		<h4 id="output2"></h4>
+    <h1>Receiver</h1>
+    <label for="encryptedMessage">Enter encrypted message: </label>
+    <input type="text" id="encryptedMessage">
+    <button id="send" onclick='decrypt()'>Decrypt</button>
+    <h4 id="output2"></h4>
 
     <script>
-function decrypt() {
-    const Alphadb = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "];
+        function decrypt() {
+            const Alphadb = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "];
 
-    let a = 0;
-    let b = 0;
-    let c = 0;
-    let en = prompt("Enter encrypted message: ");
-    let key = en.length;
-    let dec = "";
+            let key = document.getElementById('encryptedMessage').value.length;
+            let dec = "";
 
-    for (let i = 0; i < en.length; i++) {
-        let c = Alphadb.indexOf(en[i]);
-        let b = c - key;
-        dec += Alphadb[(b + 27) % 27]; 
-        key--;
-    }
+            for (let i = 0; i < en.length; i++) {
+                let c = Alphadb.indexOf(en[i]);
+                let b = c - key;
+                dec += Alphadb[(b + 27) % 27];
+                key--;
+            }
 
-    document.getElementById('output2').innerHTML=dec;
-}	
+            document.getElementById('output2').innerHTML = dec;
+        }
     </script>
-
 </body>
 </html>

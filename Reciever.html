@@ -60,13 +60,14 @@
     <h1>Decrypter</h1>
     <label for="encryptedMessage">Enter encrypted message: </label>
     <input type="text" id="encryptedMessage">
-    <button id="send" onclick="decrypt()">Decrypt</button>
-
+    <button id="send">Decrypt</button>
     <h4 id="output2"></h4>
 
     <script>
+        document.getElementById('send').addEventListener('click', decrypt);
+
         function decrypt() {
-           const Alphadb = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"," ","1","2","3","4","5","6","7","8","9","0","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X,"Y","Z",".","!"];
+            const Alphadb = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", ".", "!"];
 
             let en = document.getElementById('encryptedMessage').value;
             let key = en.length;
@@ -75,7 +76,7 @@
             for (let i = 0; i < en.length; i++) {
                 let c = Alphadb.indexOf(en[i]);
                 let b = c - key;
-                dec += Alphadb[(b + 64) % 64];
+                dec += Alphadb[(b + Alphadb.length) % Alphadb.length];
                 key--;
             }
 

@@ -7,9 +7,21 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
             padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             background-color: #f5f5f5;
+        }
+
+        #container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         form {
@@ -34,8 +46,10 @@
         }
 
         #encryptedMessage {
-            padding: 8px;
+            width: 100%;
+            padding: 10px;
             margin-right: 10px;
+            box-sizing: border-box;
         }
 
         #send {
@@ -53,6 +67,8 @@
     </style>
 </head>
 <body>
+
+<div id="container">
     <form>
         <input type="button" id="submit" value="Be Encrypter" onclick="location.href='Sender.html';">
     </form>
@@ -62,26 +78,28 @@
     <input type="text" id="encryptedMessage">
     <button id="send">Decrypt</button>
     <h4 id="output2"></h4>
+</div>
 
-    <script>
-        document.getElementById('send').addEventListener('click', decrypt);
+<script>
+    document.getElementById('send').addEventListener('click', decrypt);
 
-        function decrypt() {
-            const Alphadb = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", ".", "!"];
+    function decrypt() {
+        const Alphadb = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", ".", "!"];
 
-            let en = document.getElementById('encryptedMessage').value;
-            let key = en.length;
-            let dec = "";
+        let en = document.getElementById('encryptedMessage').value;
+        let key = en.length;
+        let dec = "";
 
-            for (let i = 0; i < en.length; i++) {
-                let c = Alphadb.indexOf(en[i]);
-                let b = c - key;
-                dec += Alphadb[(b + Alphadb.length) % Alphadb.length];
-                key--;
-            }
-
-            document.getElementById('output2').textContent = dec;
+        for (let i = 0; i < en.length; i++) {
+            let c = Alphadb.indexOf(en[i]);
+            let b = c - key;
+            dec += Alphadb[(b + Alphadb.length) % Alphadb.length];
+            key--;
         }
-    </script>
+
+        document.getElementById('output2').textContent = dec;
+    }
+</script>
+
 </body>
 </html>

@@ -4,15 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h4 {
+            color: #555;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="submit"] {
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
-<h1>Welcome to the homepage of Encrypted chat Webite</h1>
-<h4>Choose your mode!!</h4>
-<form action="Sender.html">
-<input type='submit' id='sender' value='Be Sender'>
-</form>
-<form action="Reciever.html">
-<input type='submit' id='sender' value='Be Reciever'>
-</form>
-    </body>
-	</html>
+    <h1>Welcome to the homepage of Encrypted chat Website</h1>
+    <h4>Choose your mode!!</h4>
+    <form action="Sender.html">
+        <input type='submit' value='Be Sender'>
+    </form>
+    <form action="Receiver.html">
+        <input type='submit' value='Be Receiver'>
+    </form>
+</body>
+</html>

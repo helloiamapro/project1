@@ -3,87 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encrypter</title>
+    <title>Message Encryption</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
         }
 
-        form {
-            margin-bottom: 20px;
+        #container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        #submit {
+        #message, #output {
+            width: 100%;
             padding: 10px;
-            background-color: #4caf50;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        label {
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        #message {
-            padding: 8px;
-            margin-right: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
         }
 
         #send {
-            padding: 10px;
-            background-color: #3498db;
-            color: #fff;
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
             border: none;
+            border-radius: 4px;
             cursor: pointer;
+            font-size: 16px;
         }
 
-        #output {
-            margin-top: 10px;
-            color: #333;
+        #send:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <form>
-        <input type="button" id="submit" value="Be Decrypter" onclick="location.href='Reciever.html';">
-    </form>
 
-    <h1>Encrypter</h1>
-    <label for="message">Enter any message: </label>
-    <input type="text" id="message">
+<div id="container">
+    <h2>Message Encryption</h2>
+    <input type="text" id="message" placeholder="Enter your message">
     <button id="send">Encrypt</button>
-    <h4 id="output"></h4>
+    <div id="output"></div>
+</div>
 
-    <script>
-        document.getElementById('send').addEventListener('click', encrypt);
+<script>
+    document.getElementById('send').addEventListener('click', encrypt);
 
-        function encrypt() {
-            const Alphadb = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"," ","1","2","3","4","5","6","7","8","9","0","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",".","!"];
+    function encrypt() {
+        const Alphadb = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"," ","1","2","3","4","5","6","7","8","9","0","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",".","!"];
 
-            let msg = document.getElementById('message').value;
-            let en = "";
-            let key = msg.length;
+        let msg = document.getElementById('message').value;
 
-            for (let i = 0; i < msg.length; i++) {
-                let a = Alphadb.indexOf(msg[i]);
-                let b = key + a;
-                let c = b % Alphadb.length;
-                en += Alphadb[c];
-                key--;
+        // Check if the input message is empty
+        if (!msg.trim()) {
+            alert('Please enter a message.');
+            return;
+        }
+
+        let en = "";
+        let key = msg.length;
+
+        for (let i = 0; i < msg.length; i++) {
+            let a = Alphadb.indexOf(msg[i]);
+
+            // Check if the character is in the Alphadb array
+            if (a === -1) {
+                alert('Invalid character in the message.');
+                return;
             }
 
-            let outputElement = document.getElementById('output');
-            outputElement.textContent = 'Encrypted: ' + en;
+            let b = key + a;
+            let c = b % Alphadb.length;
+            en += Alphadb[c];
+            key--;
         }
-    </script>
+
+        let outputElement = document.getElementById('output');
+        outputElement.textContent = 'Encrypted: ' + en;
+    }
+</script>
+
 </body>
 </html>
